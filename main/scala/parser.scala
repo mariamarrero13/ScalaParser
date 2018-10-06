@@ -15,11 +15,11 @@ class CICOMparser extends RegexParsers{
     def PropIdList : Parser[Any] = Id | Id~","~ PropIdList
     def Def : Parser[Any] = Id ~ ":=" ~ Exp
     def Empty : Parser[Any] = ""
-    def Bool : Parser[Any] = true | false
+    def Bool : Parser[Any] = "true" | "false"
     def Unop : Parser[Any] = Sign | "~"
     def Sign : Parser[Any] = "+" | "-"
     def Binop : Parser[Any] = Sign | "*" | "/" | "=" | "!=" | "<" | ">" | "<=" | ">=" | "&" | "|"
-    def Prim : Parser[Any] = "number?" | "function?" | "list?" |"empty?" | "cons?" | "cons" | "first" | "rest" | 
-    def Id : Parser[Any] = character ~ opt(Character|Digit)*
+    def Prim : Parser[Any] = "number?" | "function?" | "list?" |"empty?" | "cons?" | "cons" | "first" | "rest" | "arity"
+    def Id : Parser[Any] = character ~ opt(character|digit)
     def int : Parser[Any] = digit+
 }

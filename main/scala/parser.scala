@@ -20,4 +20,8 @@ class CICOMparser extends RegexParsers{
     def Id : Parser[Any] = not(resKey) ~> Characters ~ rep(not(resKey)~> Characters|Digits)
     def Intg : Parser[Any] = rep1(Digits)
     def resKey :Parser[Any]= "let" | "in" | "map"  |"if" |"then" |"else" |"to"|"empty"|"true"|"false"| "number?" | "function?" | "list?" |"empty?" | "cons?" | "cons" | "first" | "rest" | "arity"
+    def apply(input: String): Unit = parseAll(Exp, input) match {
+    case Success(result, _) => println("Parsing Successful")
+    case failure : NoSuccess => scala.sys.error(failure.msg)
+  }
 }

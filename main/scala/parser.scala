@@ -19,5 +19,5 @@ class CICOMparser extends RegexParsers{
     def Prim : Parser[Any] = "number?" | "function?" | "list?" |"empty?" | "cons?" | "cons" | "first" | "rest" | "arity"
     def Id : Parser[Any] = not(resKey) ~> Characters ~ rep(not(resKey)~> Characters|Digits)
     def Intg : Parser[Any] = rep1(Digits)
-    def resKey :Parser[Any]= "let" | "in" | "map"  |"if" |"then" |"else" |"to"
+    def resKey :Parser[Any]= "let" | "in" | "map"  |"if" |"then" |"else" |"to"|"empty"|"true"|"false"| "number?" | "function?" | "list?" |"empty?" | "cons?" | "cons" | "first" | "rest" | "arity"
 }

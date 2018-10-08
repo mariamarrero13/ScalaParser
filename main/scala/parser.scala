@@ -19,9 +19,15 @@ class CICOMparser extends RegexParsers{
     def Prim : Parser[Any] = "number?" | "function?" | "list?" |"empty?" | "cons?" | "cons" | "first" | "rest" | "arity"
     def Id : Parser[Any] = not(resKey) ~> Characters ~ rep(not(resKey)~> Characters|Digits)
     def Intg : Parser[Any] = rep1(Digits)
+    
+    //reserved keywords of the language, placed apart so the parser does not identify
+    //them as and Id 
     def resKey :Parser[Any]= "let" | "in" | "map"  |"if" |"then" |"else" |"to"|"empty"|"true"|"false"| "number?" | "function?" | "list?" |"empty?" | "cons?" | "cons" | "first" | "rest" | "arity"
+
+    //function used to test the parser. 
+    //input = string to parse
     def apply(input: String): Unit = parseAll(Exp, input) match {
-    case Success(result, _) => println("Parsing Successful")
+    case Success(result, _) => println("Correct Syntax")
     case failure : NoSuccess => scala.sys.error(failure.msg)
   }
 }

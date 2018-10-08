@@ -21,7 +21,7 @@ class CICOMparser extends RegexParsers{
     def Intg : Parser[Any] = rep1(Digits)
     
     //reserved keywords of the language, placed apart so the parser does not identify
-    //them as and Id 
+    //them as an Id 
     def resKey :Parser[Any]= "let" | "in" | "map"  |"if" |"then" |"else" |"to"|"empty"|"true"|"false"| "number?" | "function?" | "list?" |"empty?" | "cons?" | "cons" | "first" | "rest" | "arity"
 
     //function used to test the parser. 
